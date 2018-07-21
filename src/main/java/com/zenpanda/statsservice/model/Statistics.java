@@ -16,13 +16,13 @@ import lombok.EqualsAndHashCode;
 public class Statistics {
 
     @NotNull
-    private Double sum;
+    private double sum;
     @NotNull
-    private Double avg;
+    private double avg;
     @NotNull
-    private Double max;
+    private double max;
     @NotNull
-    private Double min;
+    private double min;
     @NotNull
-    private Long count;
+    private long count;
 }

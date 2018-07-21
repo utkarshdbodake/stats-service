@@ -16,8 +16,7 @@ import lombok.EqualsAndHashCode;
 public class Transaction {
 
     @NotNull
-    private Double amount;
-
+    private double amount;
     @NotNull
-    private Long timestamp;
+    private long timestamp;
 }
