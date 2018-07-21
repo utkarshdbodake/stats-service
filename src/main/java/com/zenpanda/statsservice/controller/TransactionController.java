@@ -19,10 +19,9 @@ public class TransactionController {
     @RequestMapping(value = "/transactions", method = RequestMethod.POST)
     public ResponseEntity saveTransaction(@RequestBody Transaction transaction) {
 
-        // If transaction is older than 60 seconds, then send http status code 204
-        if (!transactionService.isTransactionValid(transaction))
+        if (transactionService.addTransaction(transaction))
+            return new ResponseEntity(HttpStatus.CREATED);
+        else
             return new ResponseEntity(HttpStatus.NO_CONTENT);
-
-        return new ResponseEntity(HttpStatus.CREATED);
     }
 }

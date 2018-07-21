@@ -10,6 +10,8 @@ public class TransactionService {
 
     @Autowired
     private TimeUtil timeUtil;
+    @Autowired
+    private StatisticsService statisticsService;
 
     /**
      * If transaction timestamp is older than 60 seconds OR If transaction timestamp is
@@ -17,7 +19,7 @@ public class TransactionService {
      * @param transaction
      * @return
      */
-    public boolean isTransactionValid(Transaction transaction) {
+    private boolean isTransactionValid(Transaction transaction) {
 
         long currentTimestamp = timeUtil.currentTimestamp();
         long transactionTimestamp = transaction.getTimestamp();
@@ -25,5 +27,20 @@ public class TransactionService {
 
         // checks if the difference in seconds lies within a minute's range.
         return differenceInMilliseconds >= 0 && differenceInMilliseconds <= 60000;
+    }
+
+    /**
+     * If transaction is valid, then it makes call to update the statistics.
+     * @param transaction
+     * @return
+     */
+    public boolean addTransaction(Transaction transaction) {
+
+        // If transaction is older than 60 seconds, then return false.
+        if (!isTransactionValid(transaction))
+            return false;
+
+        statisticsService.updateStatistics(transaction);
+        return true;
     }
 }

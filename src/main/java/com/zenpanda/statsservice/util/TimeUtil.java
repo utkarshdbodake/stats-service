@@ -21,7 +21,6 @@ public class TimeUtil {
      * @return
      */
     public long convertMillisecondsToSeconds(long milliseconds) {
-
         return milliseconds / 1000;
     }
 }

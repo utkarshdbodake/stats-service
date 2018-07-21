@@ -18,43 +18,43 @@ public class TransactionServiceTest {
 
     @Mock
     private TimeUtil timeUtilMock;
+    @Mock
+    private StatisticsService statisticsService;
     @InjectMocks
     private TransactionService transactionService;
 
     @Before
     public void initialize() {
         when(timeUtilMock.currentTimestamp()).thenReturn(Instant.now().toEpochMilli());
-//        when(timeUtilMock.convertMillisecondsToSeconds(Mockito.anyLong()))
-//                .thenAnswer((InvocationOnMock invocation) -> (long)invocation.getArguments()[0] / 1000);
     }
 
     /**
-     * Transaction is successfully validated as it falls within a minute's range.
+     * Transaction is added as the transaction's timestamp within a minute.
      */
     @Test
-    public void shouldBeAbleToValidateTransaction() {
+    public void shouldBeAbleSuccessfullyAddTransaction() {
         Transaction transactionWithinAMinute = TransactionServiceFixture.transactionWithinAMinute;
-        boolean actualResult = transactionService.isTransactionValid(transactionWithinAMinute);
+        boolean actualResult = transactionService.addTransaction(transactionWithinAMinute);
         Assert.assertTrue(actualResult);
     }
 
     /**
-     * Transaction is invalidated as it falls prior to a minute's range.
+     * Transaction is not added as it falls prior to a minute's range.
      */
     @Test
-    public void shouldBeAbleToInValidateTransaction1() {
+    public void shouldNotBeAbleAddTransaction1() {
         Transaction transactionOlderThanAMinute = TransactionServiceFixture.transactionOlderThanAMinute;
-        boolean actualResult = transactionService.isTransactionValid(transactionOlderThanAMinute);
+        boolean actualResult = transactionService.addTransaction(transactionOlderThanAMinute);
         Assert.assertFalse(actualResult);
     }
 
     /**
-     * Transaction is invalidated as the transaction's timestamp falls in future.
+     * Transaction is not added as the transaction's timestamp falls in future.
      */
     @Test
-    public void shouldBeAbleToInValidateTransaction2() {
+    public void shouldNotBeAbleAddTransaction2() {
         Transaction transactionOfFuture = TransactionServiceFixture.transactionOfFuture;
-        boolean actualResult = transactionService.isTransactionValid(transactionOfFuture);
+        boolean actualResult = transactionService.addTransaction(transactionOfFuture);
         Assert.assertFalse(actualResult);
     }
 }
