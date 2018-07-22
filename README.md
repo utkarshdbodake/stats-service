@@ -2,6 +2,8 @@
 
 This service used to provide functionality around Statistics calculation. It contains restful API's for generating statistics and saving transactions.
 
+Client app github link: https://github.com/utkarshdbodake/stats_app
+
 -----
 
 # Approach
