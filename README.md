@@ -130,6 +130,11 @@ Install the following:
 ### JAR
 Build project: `mvn clean install`
 
+### Running of application web server locally
+1. Run ``mvn spring-boot:run`` which will start the application Tomcat web server listening on port 8080.
+2. All API's will be accessible with Base URL `http://localhost:8080/`.
+
+
 ### Running Test
 Run tests: `mvn test`
 
