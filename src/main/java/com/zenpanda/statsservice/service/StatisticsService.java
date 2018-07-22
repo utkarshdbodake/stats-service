@@ -4,7 +4,6 @@ import com.zenpanda.statsservice.dao.InMemoryStatisticsDao;
 import com.zenpanda.statsservice.model.Statistics;
 import com.zenpanda.statsservice.model.Transaction;
 import com.zenpanda.statsservice.util.TimeUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.DoubleSummaryStatistics;
 
-@Slf4j
 @Service
 public class StatisticsService {
 
@@ -76,7 +74,6 @@ public class StatisticsService {
     @Scheduled(fixedRate = 1000)
     public DoubleSummaryStatistics clearStaleStatistics() {
 
-        log.info("*** Scheduled job running to clear stale statistics ***");
         // get key for records which has passed 60 seconds window
         long staleKey = timeUtil.currentTimeInSeconds() - 60;
 
