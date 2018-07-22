@@ -23,4 +23,13 @@ public class TimeUtil {
     public long convertMillisecondsToSeconds(long milliseconds) {
         return milliseconds / 1000;
     }
+
+    /**
+     * Gets time in epoch in millis in UTC time zone.
+     * @return
+     */
+    public long currentTimeInSeconds() {
+        long timestamp = currentTimestamp();
+        return convertMillisecondsToSeconds(timestamp);
+    }
 }

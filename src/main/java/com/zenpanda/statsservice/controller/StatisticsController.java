@@ -13,6 +13,10 @@ public class StatisticsController {
     @Autowired
     private StatisticsService statisticsService;
 
+    /**
+     * Gets the stats in O(1) time & space.
+     * @return
+     */
     @RequestMapping(value = "/statistics", method = RequestMethod.GET)
     public Statistics getStatistics() {
         return statisticsService.getStatistics();
