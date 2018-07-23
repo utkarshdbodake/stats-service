@@ -1,8 +1,10 @@
+
 # Stats Service
 
 This service used to provide functionality around Statistics calculation. It contains restful API's for generating statistics and saving transactions.
 
 Client app github link: https://github.com/utkarshdbodake/stats_app
+Client Google play store link: https://play.google.com/store/apps/details?id=com.zenpanda.statsapp
 
 -----
 
@@ -21,6 +23,13 @@ Client app github link: https://github.com/utkarshdbodake/stats_app
 - This is a scheduled job which runs every second.
 - This cleanses the stale stats entries from `ConcurrentHashMap` and then recomputes the resultant in-memory statistics.
 
+----
+# Deployment
+- This project is deployed on AWS EC2 `t2.micro` instance
+- Public DNS of the above instance is: `ec2-18-204-209-143.compute-1.amazonaws.com:8080`
+- POST Transactions endpoint: `POST http://ec2-18-204-209-143.compute-1.amazonaws.com:8080/transactions`
+- GET Statistics endpoint: `GET http://ec2-18-204-209-143.compute-1.amazonaws.com:8080/statistics`
+- Note: As this is a single instance running and as there is no auto scaling configured, there may be cases when instance can be down due to network failure, etc
 ----
 # Entities
 ### Transaction Entity
